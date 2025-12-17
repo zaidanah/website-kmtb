@@ -438,7 +438,7 @@ export default function Home() {
               <div className="text-right">
                 <h4 className="text-white font-bold mb-4">Hubungi Kami</h4>
                 <p className="text-sm">
-                  Gedung Teknik Biomedis, Telkom University
+                  Jl. Telekomunikasi No.1, Sukapura, Kec. Dayeuhkolot, Kabupaten Bandung, Jawa Barat 40257
                 </p>
                 <p className="text-sm mt-2 text-[#D4C2B0]">
                   @kmtb.telkomuniversity
