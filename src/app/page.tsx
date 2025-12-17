@@ -1,0 +1,465 @@
+"use client";
+
+import Navbar from "@/components/layout/Navbar";
+import Image from "next/image";
+import Link from "next/link";
+import { motion } from "framer-motion";
+import {
+  MessageCircle,
+  ArrowRight,
+  ChevronDown,
+  Target,
+  Users,
+  Instagram,
+  Linkedin,
+} from "lucide-react";
+
+// --- DATA KEMENTERIAN ---
+interface Department {
+  id: string;
+  name: string;
+  shortName: string;
+  icon: string;
+  fungsi: string[];
+  proker: string[];
+  desc?: string;
+}
+
+const departments: Department[] = [
+  {
+    id: "keuangan",
+    name: "Keuangan Organisasi",
+    shortName: "Keuangan",
+    icon: "BadgeDollarSign",
+    fungsi: [
+      "Mengelola dan mengawasi seluruh aspek keuangan di lingkungan KMTB.",
+    ],
+    proker: ["Monitoring dan evaluasi penggunaan dana pada setiap kegiatan."],
+  },
+  {
+    id: "kesekretariatan",
+    name: "Kesekretariatan Organisasi",
+    shortName: "Sekretaris",
+    icon: "FileText",
+    fungsi: [
+      "Mengatur dan mengelola seluruh administrasi surat-menyurat serta arsip kegiatan organisasi.",
+    ],
+    proker: ["Pengelolaan surat keluar dan surat masuk organisasi."],
+  },
+  {
+    id: "panrb",
+    name: "Kementerian Pendayagunaan Aparatur Organisasi & Birokrasi",
+    shortName: "PANRB",
+    icon: "Scale",
+    fungsi: [
+      "Mengawasi dan menimbang layak atau tidaknya program kerja yang diajukan oleh kementerian-kementerian.",
+    ],
+    proker: [
+      "Pelaksanaan Sidang, Musyawarah Besar, dan Musyawarah Luar Biasa KMTB.",
+    ],
+  },
+  {
+    id: "dagri",
+    name: "Kementerian Dalam Negeri",
+    shortName: "Dagri",
+    icon: "Home",
+    fungsi: [
+      "Menciptakan dan menjaga rasa kekeluargaan dan kesolidaritasan di lingkungan BPH maupun warga KMTB.",
+    ],
+    proker: ["Internalisasi (Kegiatan Internal Teknik Biomedis)."],
+  },
+  {
+    id: "regenerasi",
+    name: "Kementerian Regenerasi & Kaderisasi",
+    shortName: "Regenerasi",
+    icon: "Sprout",
+    fungsi: [
+      "Bertanggung jawab atas pelaksanaan rangkaian pelatihan kepemimpinan dasar dan karakter serta regenerasi BPH.",
+    ],
+    proker: ["Caderization, Dissemination, Acceleration Program (CARDIAC)."],
+  },
+  {
+    id: "inventaris",
+    name: "Kementerian Pengadaan & Perawatan Inventaris",
+    shortName: "Inventaris",
+    icon: "PackageSearch",
+    fungsi: [
+      "Bertanggung jawab atas pengadaan perawatan seluruh harta benda organisasi dan penyediaan logistik organisasi.",
+    ],
+    proker: [
+      "Pengadaan dan penyedia fasilitas kebutuhan inventaris organisasi.",
+    ],
+  },
+  {
+    id: "medinfo",
+    name: "Kementerian Media & Informasi",
+    shortName: "Medinfo",
+    icon: "Megaphone",
+    fungsi: [
+      "Bertanggung jawab atas penyediaan informasi-informasi penting guna mendukung kemajuan dan pengembangan KMTB dalam bentuk visualisasi terstruktur.",
+    ],
+    proker: ["National Day Awareness."],
+  },
+  {
+    id: "lugri",
+    name: "Kementerian Luar Negeri",
+    shortName: "Lugri",
+    icon: "Globe",
+    fungsi: [
+      "Melaksanakan kerjasama dan kolaborasi serta membangun dan menjaga relasi dengan pihak internal maupun eksternal.",
+    ],
+    proker: ["Media Partner."],
+  },
+  {
+    id: "riset",
+    name: "Kementerian Perencanaan Pengembangan & Riset",
+    shortName: "Riset &bang",
+    icon: "Lightbulb",
+    fungsi: [
+      "Mewadahi kegiatan-kegiatan yang berhubungan dengan riset, inovasi, dan penelitian mahasiswa Teknik Biomedis.",
+    ],
+    proker: ["BIO-EX."],
+  },
+  {
+    id: "kewirausahaan",
+    name: "Kementerian Kewirausahaan & Investasi",
+    shortName: "KWU",
+    icon: "TrendingUp",
+    fungsi: [
+      "Berpartisipasi dalam memenuhi kebutuhan keuangan KMTB melalui pelaksanaan program kerja yang menghasilkan profit.",
+    ],
+    proker: ["Business operator (Merch KMTB, Seragam, dll)."],
+  },
+  {
+    id: "pengmas",
+    name: "Kementerian Pengabdian Masyarakat & Kompetisi",
+    shortName: "Pengmas",
+    icon: "HeartHandshake",
+    fungsi: [
+      "Sebagai fasilitator penyelenggara pelayanan masyarakat guna memenuhi tri dharma perguruan tinggi tingkat organisasi.",
+    ],
+    proker: ["Bengkel Prestasi."],
+  },
+  {
+    id: "pora",
+    name: "Kementerian Pemuda & Olahraga",
+    shortName: "Pora",
+    icon: "Trophy",
+    fungsi: [
+      "Memanajemen massa dalam berbagai aspek kepemudaan, termasuk olahraga, kepemimpinan, dan pengembangan diri.",
+    ],
+    proker: ["Manajemen Massa (Supporter, Arak Arakan, dsb)."],
+  },
+];
+
+// DATA KEGIATAN
+const events = [
+  {
+    title: "Pelantikan Kabinet",
+    date: "14 April 2025",
+    desc: "Penanda dimulainya masa bakti baru dengan semangat kolaborasi.",
+    img: "/public/PELANTIKAN.png",
+  },
+  {
+    title: "First Meet Lentakarya",
+    date: "Mei 2025",
+    desc: "Pertemuan perdana seluruh anggota untuk menyamakan visi & misi.",
+  },
+  {
+    title: "FGD Aklimasi x Lentakarya",
+    date: "Juni 2025",
+    desc: "Forum diskusi transisi antar kabinet untuk keberlanjutan program.",
+  },
+  {
+    title: "PKKMB Prodi 2025",
+    date: "Agustus 2025",
+    desc: "Penyambutan mahasiswa baru Teknik Biomedis dengan semangat solidaritas.",
+  },
+  {
+    title: "PPGD Training",
+    date: "Agustus 2025",
+    desc: "Pelatihan Pertolongan Gawat Darurat untuk kesiapsiagaan mahasiswa.",
+  },
+  {
+    title: "Learn Forum Workshop",
+    date: "14 Juni 2025",
+    desc: "Diskusi kesehatan mental mahasiswa di tengah tekanan akademik.",
+  },
+  {
+    title: "Humani-TB",
+    date: "4 Sept 2025",
+    desc: "Berbagi kasih bersama lansia di Panti Sosial Tresna Werdha.",
+  },
+];
+
+export default function Home() {
+  return (
+    <main className="font-sans text-kmtb-navy selection:bg-kmtb-gold selection:text-kmtb-navy">
+      <Navbar />
+
+      {/* =========================================================================
+          LAYER 0: BACKGROUND (FIXED / DIAM DI TEMPAT)
+      ========================================================================== */}
+      <div className="fixed inset-0 w-full h-full -z-10">
+        <Image
+          src="/bg-landing.jpg"
+          alt="Background KMTB"
+          fill
+          className="object-cover object-bottom"
+          quality={100}
+          priority
+        />
+        <div className="absolute inset-0 bg-[#202E50]/80 mix-blend-multiply"></div>
+        <div className="absolute inset-0 bg-black/40"></div>
+      </div>
+
+      {/* =========================================================================
+          LAYER 10: WRAPPER KONTEN (SCROLLABLE)
+      ========================================================================== */}
+      <div className="relative z-10">
+        {/* --- A. HERO SECTION --- */}
+        <section className="relative w-full h-screen flex flex-col items-center justify-center text-center px-6 pt-40">
+          <motion.div
+            initial={{ y: 30, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 1, ease: "easeOut" }}
+            className="max-w-5xl"
+          >
+            <div className="mb-6 flex items-center justify-center gap-4">
+              <span className="h-[2px] w-12 bg-white/50 hidden sm:block"></span>
+              <h3 className="font-body text-white text-xs md:text-sm tracking-[0.3em] uppercase font-bold drop-shadow-md">
+                SELAMAT DATANG DI OFFICIAL WEBSITE
+              </h3>
+              <span className="h-[2px] w-12 bg-white/50 hidden sm:block"></span>
+            </div>
+
+            <h1 className="font-sans text-4xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight tracking-wide mb-2 drop-shadow-2xl">
+              KELUARGA MAHASISWA <br />
+              <span className="text-white">TEKNIK BIOMEDIS</span>
+            </h1>
+
+            <h2 className="font-sans text-2xl md:text-4xl font-bold text-[#D4C2B0] leading-tight tracking-wider mt-4 drop-shadow-lg">
+              TELKOM UNIVERSITY
+            </h2>
+
+            <div className="mt-12">
+              <button className="px-10 py-4 bg-[#D4C2B0] text-[#202E50] rounded-full font-bold text-sm tracking-widest hover:bg-white hover:scale-105 transition-all shadow-[0_0_30px_rgba(212,194,176,0.3)] cursor-pointer border-2 border-transparent">
+                EKSPLORASI KABINET
+              </button>
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1, y: [0, 10, 0] }}
+            transition={{ duration: 2, repeat: Infinity, delay: 2 }}
+            className="absolute bottom-10 text-white/70 flex flex-col items-center gap-2"
+          >
+            <span className="text-[10px] tracking-widest uppercase">
+              Scroll Down
+            </span>
+            <ChevronDown size={24} />
+          </motion.div>
+        </section>
+
+        {/* --- B. SECTION TENTANG KAMI --- */}
+        <section
+          id="filosofi"
+          className="relative bg-white py-24 shadow-[0_-20px_60px_rgba(0,0,0,0.5)] rounded-t-[2.5rem]"
+        >
+          <div className="container mx-auto px-6">
+            <div className="text-center max-w-3xl mx-auto mb-20">
+              <span className="text-[#325980] font-bold tracking-[0.2em] text-sm uppercase">
+                Tentang Kami
+              </span>
+              <h2 className="text-4xl font-bold text-[#202E50] mt-3 mb-6">
+                Kabinet{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#202E50] to-[#325980]">
+                  Lentakarya
+                </span>
+              </h2>
+              <p className="text-gray-600 leading-loose text-lg font-body">
+                Lentakarya hadir sebagai wadah pengembangan diri yang nyata,
+                berintegritas, dan berdampak positif bagi lingkungan kampus dan
+                masyarakat luas.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8">
+              <div className="bg-[#f8f9fa] p-8 rounded-2xl border border-gray-100 hover:border-[#D4C2B0] transition-colors group shadow-sm">
+                <div className="w-12 h-12 bg-[#202E50] rounded-lg flex items-center justify-center text-white mb-4 group-hover:scale-110 transition-transform">
+                  <Target size={24} />
+                </div>
+                <h4 className="text-xl font-bold text-[#202E50] mb-2">
+                  Visi Organisasi
+                </h4>
+                <p className="text-gray-600 leading-relaxed text-sm">
+                  Menjadikan KMTB sebagai wadah yang berkesan untuk pengembangan
+                  diri mahasiswa dalam pembentukan karakter yang baik.
+                </p>
+              </div>
+
+              <div className="bg-[#f8f9fa] p-8 rounded-2xl border border-gray-100 hover:border-[#D4C2B0] transition-colors group shadow-sm">
+                <div className="w-12 h-12 bg-[#D4C2B0] rounded-lg flex items-center justify-center text-[#202E50] mb-4 group-hover:scale-110 transition-transform">
+                  <Users size={24} />
+                </div>
+                <h4 className="text-xl font-bold text-[#202E50] mb-2">
+                  Misi Utama
+                </h4>
+                <p className="text-gray-600 leading-relaxed text-sm">
+                  Meningkatkan suasana internal yang harmonis serta optimalisasi
+                  kinerja program kerja yang berdampak nyata.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* --- C. SECTION KEMENTERIAN (DIPINDAHKAN KE SINI) --- */}
+        <section className="bg-[#F5F7FA] py-24">
+          <div className="container mx-auto px-6">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl font-bold text-[#202E50] mb-4">
+                Kementerian Kami
+              </h2>
+              <div className="w-16 h-1 bg-[#D4C2B0] mx-auto rounded-full"></div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {departments.map((dept, idx) => (
+                <div
+                  key={idx}
+                  className="bg-white p-8 rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 group border border-gray-100 hover:-translate-y-2 cursor-pointer"
+                >
+                  <h3 className="text-lg font-bold text-[#202E50] mb-2 group-hover:text-[#325980] transition-colors">
+                    {dept.name}
+                  </h3>
+                  <p className="text-gray-500 text-sm mb-4 leading-relaxed line-clamp-3">
+                    {dept.fungsi && dept.fungsi[0]
+                      ? dept.fungsi[0]
+                      : "Deskripsi kementerian."}
+                  </p>
+                  <span className="text-xs font-bold text-[#D4C2B0] flex items-center gap-1 uppercase tracking-wider group-hover:gap-2 transition-all">
+                    Selengkapnya <ArrowRight size={14} />
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* --- D. SECTION KEGIATAN TERBARU (DIPINDAHKAN KE BAWAH) --- */}
+        <section className="bg-[#202E50] py-24 text-white overflow-hidden relative">
+          {/* Pattern Background */}
+          <div
+            className="absolute inset-0 opacity-5"
+            style={{
+              backgroundImage: "radial-gradient(#ffffff 1px, transparent 1px)",
+              backgroundSize: "30px 30px",
+            }}
+          ></div>
+
+          <div className="container mx-auto px-6 relative z-10">
+            <div className="flex justify-between items-end mb-12">
+              <div>
+                <span className="text-[#D4C2B0] font-bold tracking-widest text-xs uppercase">
+                  Highlights
+                </span>
+                <h2 className="text-3xl md:text-4xl font-bold mt-2">
+                  Kegiatan Terbaru
+                </h2>
+              </div>
+              <Link
+                href="/events"
+                className="hidden md:flex items-center gap-2 text-sm text-[#D4C2B0] hover:text-white transition-colors"
+              >
+                Lihat Semua <ArrowRight size={16} />
+              </Link>
+            </div>
+
+            {/* Horizontal Scroll Container */}
+            <div className="flex gap-6 overflow-x-auto pb-8 snap-x snap-mandatory scrollbar-hide">
+              {events.map((event, idx) => (
+                <div
+                  key={idx}
+                  className="min-w-[300px] md:min-w-[350px] snap-center bg-white/5 rounded-xl overflow-hidden border border-white/10 hover:border-[#D4C2B0]/50 transition-all group cursor-pointer"
+                >
+                  {/* === PLACEHOLDER GAMBAR === */}
+                  <div className="relative h-48 w-full overflow-hidden bg-[#1a243d] flex items-center justify-center group-hover:bg-[#151e32] transition-colors">
+                    <span className="text-gray-500 font-mono text-xs border border-gray-600 px-2 py-1 rounded">
+                      LINK PHOTO
+                    </span>
+                    <div className="absolute top-3 left-3 bg-[#D4C2B0] text-[#202E50] text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                      {event.date}
+                    </div>
+                  </div>
+                  <div className="p-6">
+                    <h3 className="text-lg font-bold mb-2 group-hover:text-[#D4C2B0] transition-colors line-clamp-1">
+                      {event.title}
+                    </h3>
+                    <p className="text-gray-400 text-xs leading-relaxed line-clamp-2">
+                      {event.desc}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* --- E. FOOTER --- */}
+        <footer className="relative z-20 bg-[#151e32] text-gray-400 py-16 border-t border-white/5">
+          <div className="container mx-auto px-6">
+            <div className="grid md:grid-cols-2 gap-12">
+              <div>
+                <h2 className="text-2xl font-bold text-white mb-4">
+                  KMTB Telkom University
+                </h2>
+                <p className="text-sm leading-relaxed mb-6 max-w-md">
+                  Kabinet Lentakarya berkomitmen untuk menjadi wadah aspirasi
+                  dan pengembangan diri mahasiswa Teknik Biomedis yang
+                  berintegritas dan profesional.
+                </p>
+                <div className="flex gap-4">
+                  <Link
+                    href="#"
+                    className="p-2 bg-white/5 rounded-full hover:bg-[#D4C2B0] hover:text-[#202E50] transition"
+                  >
+                    <Instagram size={20} />
+                  </Link>
+                  <Link
+                    href="#"
+                    className="p-2 bg-white/5 rounded-full hover:bg-[#D4C2B0] hover:text-[#202E50] transition"
+                  >
+                    <Linkedin size={20} />
+                  </Link>
+                </div>
+              </div>
+              <div className="text-right">
+                <h4 className="text-white font-bold mb-4">Hubungi Kami</h4>
+                <p className="text-sm">
+                  Gedung Teknik Biomedis, Telkom University
+                </p>
+                <p className="text-sm mt-2 text-[#D4C2B0]">
+                  @kmtb.telkomuniversity
+                </p>
+              </div>
+            </div>
+            <div className="border-t border-white/5 pt-8 mt-12 text-center text-xs">
+              <p>
+                &copy; 2025 KMTB Telkom University. All rights reserved.
+              </p>
+            </div>
+          </div>
+        </footer>
+      </div>
+
+      {/* Floating Chat Button */}
+      <div className="fixed bottom-8 right-8 z-[100]">
+        <button className="bg-[#D4C2B0] p-4 rounded-full shadow-2xl hover:scale-110 hover:bg-white transition-all cursor-pointer text-[#202E50] border-2 border-[#202E50]/10">
+          <MessageCircle size={28} />
+        </button>
+      </div>
+    </main>
+  );
+}
