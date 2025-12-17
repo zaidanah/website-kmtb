@@ -19,6 +19,11 @@ const firaSans = Fira_Sans({
 export const metadata: Metadata = {
   title: "KMTB Telkom University - Kabinet Lentakarya",
   description: "Website resmi Keluarga Mahasiswa Teknik Biomedis Universitas Telkom.",
+  icons: {
+    icon: "/logo-kmtb.png",
+    shortcut: "/logo-kmtb.png",
+    apple: "/logo-kmtb.png", 
+  },
 };
 
 export default function RootLayout({
