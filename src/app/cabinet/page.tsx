@@ -2,9 +2,10 @@
 
 import Navbar from "@/components/layout/Navbar";
 import { departments } from "@/data/departments";
-import { bph } from "@/data/pimpinan";
+import { bph } from "@/data/pimpinan"; // Pastikan file ini ada
 import { motion } from "framer-motion";
 import { ArrowRight, User, Users, ChevronRight, Home } from "lucide-react";
+import Image from "next/image"; // IMPORT PENTING
 import Link from "next/link";
 
 export default function CabinetPage() {
@@ -100,17 +101,27 @@ export default function CabinetPage() {
           {/* Garis Konektor Vertikal (Tiang Utama) */}
           <div className="absolute top-16 bottom-20 left-1/2 -translate-x-1/2 w-[2px] bg-gray-300 -z-10 hidden md:block"></div>
 
-{/* Level 1: Presiden */}
+          {/* Level 1: Presiden */}
           <motion.div
             initial={{ y: 20, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             viewport={{ once: true }}
             className="relative bg-white p-6 rounded-2xl shadow-lg border border-gray-100 w-full max-w-xs text-center z-10 hover:-translate-y-2 transition-transform duration-300 group"
           >
-            <div className="w-24 h-24 bg-gray-100 rounded-full mx-auto mb-4 overflow-hidden border-4 border-white shadow-md group-hover:border-[#D4C2B0] transition-colors">
-              <User className="w-full h-full text-gray-400 p-4" />
+            {/* LOGIKA FOTO PRESIDEN */}
+            <div className="relative w-24 h-24 bg-gray-100 rounded-full mx-auto mb-4 overflow-hidden border-4 border-white shadow-md group-hover:border-[#D4C2B0] transition-colors">
+              {bph.presiden.foto ? (
+                <Image
+                  src={bph.presiden.foto}
+                  alt={bph.presiden.nama}
+                  fill
+                  className="object-cover"
+                />
+              ) : (
+                <User className="w-full h-full text-gray-400 p-4" />
+              )}
             </div>
-            {/* UBAH DISINI: Panggil data dari variabel bph */}
+
             <h3 className="font-bold text-xl text-[#202E50]">
               {bph.presiden.nama}
             </h3>
@@ -131,10 +142,20 @@ export default function CabinetPage() {
               viewport={{ once: true }}
               className="bg-white p-6 rounded-2xl shadow-md border-t-4 border-[#325980] w-full max-w-xs text-center z-10"
             >
-              <div className="w-20 h-20 bg-gray-100 rounded-full mx-auto mb-3 overflow-hidden border-2 border-white shadow-sm">
-                <User className="w-full h-full text-gray-400 p-3" />
+              {/* LOGIKA FOTO WAPRES INTERNAL */}
+              <div className="relative w-20 h-20 bg-gray-100 rounded-full mx-auto mb-3 overflow-hidden border-2 border-white shadow-sm">
+                {bph.wapresInt.foto ? (
+                  <Image
+                    src={bph.wapresInt.foto}
+                    alt={bph.wapresInt.nama}
+                    fill
+                    className="object-cover"
+                  />
+                ) : (
+                  <User className="w-full h-full text-gray-400 p-3" />
+                )}
               </div>
-              {/* UBAH DISINI */}
+
               <h3 className="font-bold text-lg text-[#202E50]">
                 {bph.wapresInt.nama}
               </h3>
@@ -150,10 +171,20 @@ export default function CabinetPage() {
               viewport={{ once: true }}
               className="bg-white p-6 rounded-2xl shadow-md border-t-4 border-[#325980] w-full max-w-xs text-center z-10"
             >
-              <div className="w-20 h-20 bg-gray-100 rounded-full mx-auto mb-3 overflow-hidden border-2 border-white shadow-sm">
-                <User className="w-full h-full text-gray-400 p-3" />
+              {/* LOGIKA FOTO WAPRES EKSTERNAL */}
+              <div className="relative w-20 h-20 bg-gray-100 rounded-full mx-auto mb-3 overflow-hidden border-2 border-white shadow-sm">
+                {bph.wapresEks.foto ? (
+                  <Image
+                    src={bph.wapresEks.foto}
+                    alt={bph.wapresEks.nama}
+                    fill
+                    className="object-cover"
+                  />
+                ) : (
+                  <User className="w-full h-full text-gray-400 p-3" />
+                )}
               </div>
-              {/* UBAH DISINI */}
+
               <h3 className="font-bold text-lg text-[#202E50]">
                 {bph.wapresEks.nama}
               </h3>
