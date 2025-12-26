@@ -85,110 +85,138 @@ export default function CabinetPage() {
         </div>
       </section>
 
-      {/* ================= BPH INTI (Tree Structure) ================= */}
+      {/* ================= BPH INTI (REVAMPED - LEBIH BESAR & MEWAH) ================= */}
       <section className="py-24 container mx-auto px-6">
-        <div className="text-center mb-16">
-          <span className="text-[#325980] font-bold tracking-[0.2em] text-sm uppercase">
-            Pimpinan
+        <div className="text-center mb-20">
+          <span className="text-[#D4C2B0] font-bold tracking-[0.3em] text-sm uppercase bg-[#202E50] px-4 py-2 rounded-full shadow-lg">
+            High Council
           </span>
-          <h2 className="text-3xl font-bold text-[#202E50] mt-2">
+          <h2 className="text-4xl md:text-5xl font-extrabold text-[#202E50] mt-6">
             Badan Pengurus Harian
           </h2>
+          <p className="text-gray-500 mt-4 text-lg">
+            Pilar utama penggerak visi dan misi Kabinet Lentakarya.
+          </p>
         </div>
 
-        {/* Tree Layout */}
-        <div className="flex flex-col items-center gap-10 relative max-w-4xl mx-auto">
-          {/* Garis Konektor Vertikal (Tiang Utama) */}
-          <div className="absolute top-16 bottom-20 left-1/2 -translate-x-1/2 w-[2px] bg-gray-300 -z-10 hidden md:block"></div>
+        {/* Tree Layout Wrapper */}
+        <div className="flex flex-col items-center relative max-w-6xl mx-auto">
+          {/* Garis Konektor Vertikal (Tiang Utama) - Dipertebal & Warnai */}
+          <div className="absolute top-32 bottom-40 left-1/2 -translate-x-1/2 w-1 bg-gradient-to-b from-[#202E50] to-[#D4C2B0] -z-10 hidden md:block opacity-30"></div>
 
-          {/* Level 1: Presiden */}
+          {/* ================= LEVEL 1: PRESIDEN (HERO CARD) ================= */}
           <motion.div
-            initial={{ y: 20, opacity: 0 }}
+            initial={{ y: 30, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             viewport={{ once: true }}
-            className="relative bg-white p-6 rounded-2xl shadow-lg border border-gray-100 w-full max-w-xs text-center z-10 hover:-translate-y-2 transition-transform duration-300 group"
+            className="relative z-10 w-full flex justify-center mb-16"
           >
-            {/* LOGIKA FOTO PRESIDEN */}
-            <div className="relative w-24 h-24 bg-gray-100 rounded-full mx-auto mb-4 overflow-hidden border-4 border-white shadow-md group-hover:border-[#D4C2B0] transition-colors">
-              {bph.presiden.foto ? (
-                <Image
-                  src={bph.presiden.foto}
-                  alt={bph.presiden.nama}
-                  fill
-                  className="object-cover"
-                />
-              ) : (
-                <User className="w-full h-full text-gray-400 p-4" />
-              )}
-            </div>
+            <div className="relative bg-white w-full max-w-lg p-10 rounded-[2.5rem] shadow-[0_20px_60px_-15px_rgba(32,46,80,0.15)] border border-white hover:border-[#D4C2B0]/50 transition-all duration-500 group text-center hover:-translate-y-3">
+              {/* Decorative Top Accent */}
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-1.5 bg-[#D4C2B0] rounded-b-xl shadow-[0_0_15px_#D4C2B0]"></div>
 
-            <h3 className="font-bold text-xl text-[#202E50]">
-              {bph.presiden.nama}
-            </h3>
-            <div className="mt-2 inline-block px-3 py-1 bg-[#202E50] text-[#D4C2B0] text-xs font-bold rounded-full uppercase tracking-wider">
-              {bph.presiden.jabatan}
+              {/* Foto Besar */}
+              <div className="relative w-48 h-48 mx-auto mb-6">
+                {/* Lingkaran Hiasan Berputar di Belakang */}
+                <div className="absolute inset-0 rounded-full border-2 border-dashed border-[#D4C2B0] animate-[spin_10s_linear_infinite] opacity-50"></div>
+
+                <div className="relative w-full h-full rounded-full overflow-hidden border-[6px] border-white shadow-2xl bg-gray-100">
+                  {bph.presiden.foto ? (
+                    <Image
+                      src={bph.presiden.foto}
+                      alt={bph.presiden.nama}
+                      fill
+                      className="object-cover hover:scale-110 transition-transform duration-700"
+                    />
+                  ) : (
+                    <User className="w-full h-full text-gray-400 p-8" />
+                  )}
+                </div>
+
+                {/* Badge Icon (Optional) */}
+                <div className="absolute bottom-2 right-2 bg-[#202E50] text-white p-2 rounded-full border-4 border-white shadow-lg">
+                  <Users size={20} />
+                </div>
+              </div>
+
+              {/* Teks */}
+              <h3 className="font-extrabold text-3xl text-[#202E50] mb-2 tracking-tight">
+                {bph.presiden.nama}
+              </h3>
+              <div className="inline-block px-6 py-2 bg-gradient-to-r from-[#202E50] to-[#325980] text-white text-sm font-bold rounded-full shadow-lg shadow-blue-900/20 uppercase tracking-widest">
+                {bph.presiden.jabatan}
+              </div>
             </div>
           </motion.div>
 
-          {/* Level 2: Wapres Internal & Eksternal (Connector Horizontal) */}
-          <div className="hidden md:block w-3/4 h-[2px] bg-gray-300 absolute top-[13rem]"></div>
+          {/* ================= LEVEL 2: WAPRES (DUAL CARDS) ================= */}
 
-          {/* Level 2: Cards */}
-          <div className="flex flex-col md:flex-row gap-8 md:gap-20 w-full justify-center">
-            {/* Wapres Internal */}
+          {/* Horizontal Connector Line */}
+          <div className="hidden md:block w-[60%] h-1 bg-gradient-to-r from-transparent via-[#D4C2B0] to-transparent mb-12 opacity-50 relative top-[-2rem]"></div>
+
+          <div className="grid md:grid-cols-2 gap-8 md:gap-16 w-full px-4">
+            {/* Kartu Wapres Internal */}
             <motion.div
-              initial={{ x: -20, opacity: 0 }}
+              initial={{ x: -30, opacity: 0 }}
               whileInView={{ x: 0, opacity: 1 }}
               viewport={{ once: true }}
-              className="bg-white p-6 rounded-2xl shadow-md border-t-4 border-[#325980] w-full max-w-xs text-center z-10"
+              className="bg-white p-8 rounded-[2rem] shadow-[0_15px_40px_-10px_rgba(32,46,80,0.1)] border border-gray-100 hover:border-[#325980]/30 transition-all duration-300 hover:-translate-y-2 group text-center relative overflow-hidden"
             >
-              {/* LOGIKA FOTO WAPRES INTERNAL */}
-              <div className="relative w-20 h-20 bg-gray-100 rounded-full mx-auto mb-3 overflow-hidden border-2 border-white shadow-sm">
-                {bph.wapresInt.foto ? (
-                  <Image
-                    src={bph.wapresInt.foto}
-                    alt={bph.wapresInt.nama}
-                    fill
-                    className="object-cover"
-                  />
-                ) : (
-                  <User className="w-full h-full text-gray-400 p-3" />
-                )}
+              {/* Background Blob Decoration */}
+              <div className="absolute top-0 right-0 w-32 h-32 bg-[#325980]/5 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2"></div>
+
+              <div className="relative w-36 h-36 mx-auto mb-5 rounded-full p-1 bg-gradient-to-tr from-[#325980] to-transparent">
+                <div className="w-full h-full rounded-full overflow-hidden border-4 border-white bg-gray-100 relative">
+                  {bph.wapresInt.foto ? (
+                    <Image
+                      src={bph.wapresInt.foto}
+                      alt={bph.wapresInt.nama}
+                      fill
+                      className="object-cover"
+                    />
+                  ) : (
+                    <User className="w-full h-full text-gray-400 p-6" />
+                  )}
+                </div>
               </div>
 
-              <h3 className="font-bold text-lg text-[#202E50]">
+              <h3 className="font-bold text-2xl text-[#202E50] mb-2">
                 {bph.wapresInt.nama}
               </h3>
-              <p className="text-xs text-gray-500 font-semibold uppercase mt-1">
+              <p className="text-[#325980] font-bold text-sm uppercase tracking-wider border-b-2 border-[#D4C2B0] inline-block pb-1">
                 {bph.wapresInt.jabatan}
               </p>
             </motion.div>
 
-            {/* Wapres Eksternal */}
+            {/* Kartu Wapres Eksternal */}
             <motion.div
-              initial={{ x: 20, opacity: 0 }}
+              initial={{ x: 30, opacity: 0 }}
               whileInView={{ x: 0, opacity: 1 }}
               viewport={{ once: true }}
-              className="bg-white p-6 rounded-2xl shadow-md border-t-4 border-[#325980] w-full max-w-xs text-center z-10"
+              className="bg-white p-8 rounded-[2rem] shadow-[0_15px_40px_-10px_rgba(32,46,80,0.1)] border border-gray-100 hover:border-[#325980]/30 transition-all duration-300 hover:-translate-y-2 group text-center relative overflow-hidden"
             >
-              {/* LOGIKA FOTO WAPRES EKSTERNAL */}
-              <div className="relative w-20 h-20 bg-gray-100 rounded-full mx-auto mb-3 overflow-hidden border-2 border-white shadow-sm">
-                {bph.wapresEks.foto ? (
-                  <Image
-                    src={bph.wapresEks.foto}
-                    alt={bph.wapresEks.nama}
-                    fill
-                    className="object-cover"
-                  />
-                ) : (
-                  <User className="w-full h-full text-gray-400 p-3" />
-                )}
+              {/* Background Blob Decoration */}
+              <div className="absolute top-0 left-0 w-32 h-32 bg-[#D4C2B0]/10 rounded-full blur-2xl -translate-y-1/2 -translate-x-1/2"></div>
+
+              <div className="relative w-36 h-36 mx-auto mb-5 rounded-full p-1 bg-gradient-to-tl from-[#D4C2B0] to-transparent">
+                <div className="w-full h-full rounded-full overflow-hidden border-4 border-white bg-gray-100 relative">
+                  {bph.wapresEks.foto ? (
+                    <Image
+                      src={bph.wapresEks.foto}
+                      alt={bph.wapresEks.nama}
+                      fill
+                      className="object-cover"
+                    />
+                  ) : (
+                    <User className="w-full h-full text-gray-400 p-6" />
+                  )}
+                </div>
               </div>
 
-              <h3 className="font-bold text-lg text-[#202E50]">
+              <h3 className="font-bold text-2xl text-[#202E50] mb-2">
                 {bph.wapresEks.nama}
               </h3>
-              <p className="text-xs text-gray-500 font-semibold uppercase mt-1">
+              <p className="text-[#325980] font-bold text-sm uppercase tracking-wider border-b-2 border-[#D4C2B0] inline-block pb-1">
                 {bph.wapresEks.jabatan}
               </p>
             </motion.div>
