@@ -171,8 +171,7 @@ export default function CabinetPage() {
             </h2>
             <div className="w-16 h-1 bg-[#D4C2B0] mx-auto rounded-full mb-4"></div>
             <p className="text-gray-500 max-w-xl mx-auto">
-              Departemen dan biro yang bergerak sinergis untuk mewujudkan visi
-              Lentakarya.
+              Daftar kementerian yang siap bersinergi dalam membangun KMTB.
             </p>
           </div>
 
