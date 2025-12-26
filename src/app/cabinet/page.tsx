@@ -89,7 +89,7 @@ export default function CabinetPage() {
       <section className="py-24 container mx-auto px-6">
         <div className="text-center mb-20">
           <span className="text-[#D4C2B0] font-bold tracking-[0.3em] text-sm uppercase bg-[#202E50] px-4 py-2 rounded-full shadow-lg">
-            High Council
+            PIMPINAN
           </span>
           <h2 className="text-4xl md:text-5xl font-extrabold text-[#202E50] mt-6">
             Badan Pengurus Harian
