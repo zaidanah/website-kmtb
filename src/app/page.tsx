@@ -271,7 +271,7 @@ export default function Home() {
 
                   {/* LinkedIn */}
                   <Link
-                    href="https://www.linkedin.com/company/kmtb-telkom-university" 
+                    href="https://www.linkedin.com/company/kmtbtelu" 
                     target="_blank"
                     className="p-3 bg-white/5 rounded-full hover:bg-[#D4C2B0] hover:text-[#202E50] transition-all duration-300"
                     aria-label="LinkedIn"
