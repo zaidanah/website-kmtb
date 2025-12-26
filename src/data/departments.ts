@@ -65,7 +65,7 @@ export const departments: Department[] = [
   },
   {
     id: "panrb",
-    name: "Kementerian PANRB",
+    name: "Kementerian Pendayagunaan Aparatur Negara & Reformasi Birokrasi",
     shortName: "PANRB",
     icon: Scale,
     desc: "Mengawasi kinerja pengurus dan kepatuhan terhadap konstitusi organisasi.",
@@ -99,8 +99,8 @@ export const departments: Department[] = [
   },
   {
     id: "regenerasi",
-    name: "Kementerian Regenerasi & Kaderisasi",
-    shortName: "Regenerasi",
+    name: "Kementerian Regenerasi & Kaderisasi Organisasi",
+    shortName: "RNKO",
     icon: Sprout,
     desc: "Wadah pengembangan potensi kepemimpinan dan kaderisasi anggota KMTB.",
     fungsi: [
@@ -116,8 +116,8 @@ export const departments: Department[] = [
   },
   {
     id: "inventaris",
-    name: "Kementerian Inventaris",
-    shortName: "Inventaris",
+    name: "Kementerian Pengadaan dan Perawatan Inventaris",
+    shortName: "PPI",
     icon: PackageSearch,
     desc: "Mengelola pengadaan dan perawatan aset serta fasilitas himpunan.",
     fungsi: [
@@ -166,8 +166,8 @@ export const departments: Department[] = [
   },
   {
     id: "riset",
-    name: "Kementerian Riset & Pengembangan",
-    shortName: "Riset",
+    name: "Kementerian Pengembangan dan Perencanaan Riset",
+    shortName: "PPR",
     icon: Lightbulb,
     desc: "Fasilitator pengembangan akademik dan keilmuan teknik biomedis.",
     fungsi: [
@@ -183,8 +183,8 @@ export const departments: Department[] = [
   },
   {
     id: "kewirausahaan",
-    name: "Kementerian Kewirausahaan",
-    shortName: "KWU",
+    name: "Kementerian Kewirausahaan dan Investasi",
+    shortName: "Kewirus",
     icon: TrendingUp,
     desc: "Mengelola pendanaan mandiri melalui usaha kreatif dan merchandise.",
     fungsi: [
@@ -199,8 +199,8 @@ export const departments: Department[] = [
   },
   {
     id: "pengmas",
-    name: "Kementerian Pengabdian Masyarakat",
-    shortName: "Pengmas",
+    name: "Kementerian Pengabdian Masyarakat dan Kompetisi",
+    shortName: "PNK",
     icon: HeartHandshake,
     desc: "Wadah kontribusi sosial mahasiswa kepada masyarakat luas.",
     fungsi: [
@@ -216,7 +216,7 @@ export const departments: Department[] = [
   {
     id: "pora",
     name: "Kementerian Pemuda & Olahraga",
-    shortName: "Pora",
+    shortName: "Menpora",
     icon: Trophy,
     desc: "Mengembangkan minat bakat olahraga dan seni mahasiswa.",
     fungsi: [
