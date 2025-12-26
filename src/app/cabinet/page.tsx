@@ -2,6 +2,7 @@
 
 import Navbar from "@/components/layout/Navbar";
 import { departments } from "@/data/departments";
+import { bph } from "@/data/pimpinan";
 import { motion } from "framer-motion";
 import { ArrowRight, User, Users, ChevronRight, Home } from "lucide-react";
 import Link from "next/link";
@@ -99,7 +100,7 @@ export default function CabinetPage() {
           {/* Garis Konektor Vertikal (Tiang Utama) */}
           <div className="absolute top-16 bottom-20 left-1/2 -translate-x-1/2 w-[2px] bg-gray-300 -z-10 hidden md:block"></div>
 
-          {/* Level 1: Presiden */}
+{/* Level 1: Presiden */}
           <motion.div
             initial={{ y: 20, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
@@ -109,9 +110,12 @@ export default function CabinetPage() {
             <div className="w-24 h-24 bg-gray-100 rounded-full mx-auto mb-4 overflow-hidden border-4 border-white shadow-md group-hover:border-[#D4C2B0] transition-colors">
               <User className="w-full h-full text-gray-400 p-4" />
             </div>
-            <h3 className="font-bold text-xl text-[#202E50]">Nama Presiden</h3>
+            {/* UBAH DISINI: Panggil data dari variabel bph */}
+            <h3 className="font-bold text-xl text-[#202E50]">
+              {bph.presiden.nama}
+            </h3>
             <div className="mt-2 inline-block px-3 py-1 bg-[#202E50] text-[#D4C2B0] text-xs font-bold rounded-full uppercase tracking-wider">
-              Presiden Mahasiswa
+              {bph.presiden.jabatan}
             </div>
           </motion.div>
 
@@ -130,11 +134,12 @@ export default function CabinetPage() {
               <div className="w-20 h-20 bg-gray-100 rounded-full mx-auto mb-3 overflow-hidden border-2 border-white shadow-sm">
                 <User className="w-full h-full text-gray-400 p-3" />
               </div>
+              {/* UBAH DISINI */}
               <h3 className="font-bold text-lg text-[#202E50]">
-                Nama Wapres Int
+                {bph.wapresInt.nama}
               </h3>
               <p className="text-xs text-gray-500 font-semibold uppercase mt-1">
-                Wakil Presiden Internal
+                {bph.wapresInt.jabatan}
               </p>
             </motion.div>
 
@@ -148,11 +153,12 @@ export default function CabinetPage() {
               <div className="w-20 h-20 bg-gray-100 rounded-full mx-auto mb-3 overflow-hidden border-2 border-white shadow-sm">
                 <User className="w-full h-full text-gray-400 p-3" />
               </div>
+              {/* UBAH DISINI */}
               <h3 className="font-bold text-lg text-[#202E50]">
-                Nama Wapres Eks
+                {bph.wapresEks.nama}
               </h3>
               <p className="text-xs text-gray-500 font-semibold uppercase mt-1">
-                Wakil Presiden Eksternal
+                {bph.wapresEks.jabatan}
               </p>
             </motion.div>
           </div>
