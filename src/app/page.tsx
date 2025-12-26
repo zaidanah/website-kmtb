@@ -12,6 +12,8 @@ import {
   Users,
   Instagram,
   Linkedin,
+  Youtube,
+  Mail,
 } from "lucide-react";
 
 // --- DATA KEMENTERIAN ---
@@ -410,45 +412,114 @@ export default function Home() {
         {/* --- E. FOOTER --- */}
         <footer className="relative z-20 bg-[#151e32] text-gray-400 py-16 border-t border-white/5">
           <div className="container mx-auto px-6">
-            <div className="grid md:grid-cols-2 gap-12">
+            <div className="grid md:grid-cols-2 gap-12 items-start">
+              
+              {/* Kolom Kiri: Brand & Deskripsi */}
               <div>
-                <h2 className="text-2xl font-bold text-white mb-4">
+                <h2 className="text-2xl font-bold text-white mb-4 flex items-center gap-3">
+                  {/* Opsional: Bisa pasang logo kecil disini jika mau */}
                   KMTB Telkom University
                 </h2>
-                <p className="text-sm leading-relaxed mb-6 max-w-md">
+                <p className="text-sm leading-relaxed mb-8 max-w-md opacity-80">
                   Kabinet Lentakarya berkomitmen untuk menjadi wadah aspirasi
                   dan pengembangan diri mahasiswa Teknik Biomedis yang
-                  berintegritas dan profesional.
+                  berintegritas, profesional, dan berdampak nyata bagi masyarakat.
                 </p>
+                
+                {/* Social Media Icons */}
                 <div className="flex gap-4">
+                  {/* Instagram */}
                   <Link
-                    href="#"
-                    className="p-2 bg-white/5 rounded-full hover:bg-[#D4C2B0] hover:text-[#202E50] transition"
+                    href="https://instagram.com/kmtb.telkomuniversity"
+                    target="_blank"
+                    className="p-3 bg-white/5 rounded-full hover:bg-[#D4C2B0] hover:text-[#202E50] transition-all duration-300 group"
+                    aria-label="Instagram"
                   >
                     <Instagram size={20} />
                   </Link>
+
+                  {/* LinkedIn */}
                   <Link
-                    href="#"
-                    className="p-2 bg-white/5 rounded-full hover:bg-[#D4C2B0] hover:text-[#202E50] transition"
+                    href="https://www.linkedin.com/company/kmtb-telkom-university" 
+                    target="_blank"
+                    className="p-3 bg-white/5 rounded-full hover:bg-[#D4C2B0] hover:text-[#202E50] transition-all duration-300"
+                    aria-label="LinkedIn"
                   >
                     <Linkedin size={20} />
                   </Link>
+
+                  {/* YouTube */}
+                  <Link
+                    href="https://www.youtube.com/@kmtbtelkomuniversity2592" 
+                    target="_blank"
+                    className="p-3 bg-white/5 rounded-full hover:bg-[#D4C2B0] hover:text-[#202E50] transition-all duration-300"
+                    aria-label="YouTube"
+                  >
+                    <Youtube size={20} />
+                  </Link>
+
+                  {/* TikTok (Custom SVG) */}
+                  <Link
+                    href="https://www.tiktok.com/@kmtb.telkomuniversity" 
+                    target="_blank"
+                    className="p-3 bg-white/5 rounded-full hover:bg-[#D4C2B0] hover:text-[#202E50] transition-all duration-300"
+                    aria-label="TikTok"
+                  >
+                    {/* Ikon TikTok Custom */}
+                    <svg 
+                      xmlns="http://www.w3.org/2000/svg" 
+                      width="20" 
+                      height="20" 
+                      viewBox="0 0 24 24" 
+                      fill="none" 
+                      stroke="currentColor" 
+                      strokeWidth="2" 
+                      strokeLinecap="round" 
+                      strokeLinejoin="round"
+                    >
+                      <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
+                    </svg>
+                  </Link>
+
+                  {/* Email */}
+                  <Link
+                    href="mailto:kmtb@telkomuniversity.ac.id" 
+                    className="p-3 bg-white/5 rounded-full hover:bg-[#D4C2B0] hover:text-[#202E50] transition-all duration-300"
+                    aria-label="Email"
+                  >
+                    <Mail size={20} />
+                  </Link>
                 </div>
               </div>
-              <div className="text-right">
-                <h4 className="text-white font-bold mb-4">Hubungi Kami</h4>
-                <p className="text-sm">
-                  Jl. Telekomunikasi No.1, Sukapura, Kec. Dayeuhkolot, Kabupaten Bandung, Jawa Barat 40257
-                </p>
-                <p className="text-sm mt-2 text-[#D4C2B0]">
-                  @kmtb.telkomuniversity
-                </p>
+
+              {/* Kolom Kanan: Alamat & Kontak */}
+              <div className="text-left md:text-right">
+                <h4 className="text-white font-bold mb-6 text-lg">Hubungi Kami</h4>
+                
+                <div className="space-y-4">
+                  <div className="flex flex-col md:items-end">
+                    <span className="text-xs font-bold text-[#D4C2B0] uppercase tracking-wider mb-1">Alamat Sekretariat</span>
+                    <p className="text-sm leading-relaxed max-w-xs">
+                      Jl. Telekomunikasi No.1, Sukapura,<br />
+                      Kec. Dayeuhkolot, Kabupaten Bandung,<br />
+                      Jawa Barat 40257
+                    </p>
+                  </div>
+
+                  <div className="flex flex-col md:items-end">
+                    <span className="text-xs font-bold text-[#D4C2B0] uppercase tracking-wider mb-1">Email Resmi</span>
+                    <p className="text-sm hover:text-white transition-colors cursor-pointer">
+                      kmtb@telkomuniversity.ac.id
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
-            <div className="border-t border-white/5 pt-8 mt-12 text-center text-xs">
-              <p>
-                &copy; 2025 KMTB Telkom University. All rights reserved.
-              </p>
+
+            {/* Copyright */}
+            <div className="border-t border-white/10 pt-8 mt-12 flex flex-col md:flex-row justify-between items-center text-xs opacity-60">
+              <p>&copy; 2025 KMTB Telkom University. All rights reserved.</p>
+              <p className="mt-2 md:mt-0">Kabinet Lentakarya</p>
             </div>
           </div>
         </footer>
