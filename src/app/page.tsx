@@ -1,6 +1,8 @@
 "use client";
 
 import Navbar from "@/components/layout/Navbar";
+import { departments } from "@/data/departments";
+import { events } from "@/data/events";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -17,182 +19,11 @@ import {
 } from "lucide-react";
 
 // --- DATA KEMENTERIAN ---
-interface Department {
-  id: string;
-  name: string;
-  shortName: string;
-  icon: string;
-  fungsi: string[];
-  proker: string[];
-  desc?: string;
-}
+const departmentsData = departments.map((department) => department.name);
 
-const departments: Department[] = [
-  {
-    id: "keuangan",
-    name: "Keuangan Organisasi",
-    shortName: "Keuangan",
-    icon: "BadgeDollarSign",
-    fungsi: [
-      "Mengelola dan mengawasi seluruh aspek keuangan di lingkungan KMTB.",
-    ],
-    proker: ["Monitoring dan evaluasi penggunaan dana pada setiap kegiatan."],
-  },
-  {
-    id: "kesekretariatan",
-    name: "Kesekretariatan Organisasi",
-    shortName: "Sekretaris",
-    icon: "FileText",
-    fungsi: [
-      "Mengatur dan mengelola seluruh administrasi surat-menyurat serta arsip kegiatan organisasi.",
-    ],
-    proker: ["Pengelolaan surat keluar dan surat masuk organisasi."],
-  },
-  {
-    id: "panrb",
-    name: "Kementerian Pendayagunaan Aparatur Organisasi & Birokrasi",
-    shortName: "PANRB",
-    icon: "Scale",
-    fungsi: [
-      "Mengawasi dan menimbang layak atau tidaknya program kerja yang diajukan oleh kementerian-kementerian.",
-    ],
-    proker: [
-      "Pelaksanaan Sidang, Musyawarah Besar, dan Musyawarah Luar Biasa KMTB.",
-    ],
-  },
-  {
-    id: "dagri",
-    name: "Kementerian Dalam Negeri",
-    shortName: "Dagri",
-    icon: "Home",
-    fungsi: [
-      "Menciptakan dan menjaga rasa kekeluargaan dan kesolidaritasan di lingkungan BPH maupun warga KMTB.",
-    ],
-    proker: ["Internalisasi (Kegiatan Internal Teknik Biomedis)."],
-  },
-  {
-    id: "regenerasi",
-    name: "Kementerian Regenerasi & Kaderisasi",
-    shortName: "Regenerasi",
-    icon: "Sprout",
-    fungsi: [
-      "Bertanggung jawab atas pelaksanaan rangkaian pelatihan kepemimpinan dasar dan karakter serta regenerasi BPH.",
-    ],
-    proker: ["Caderization, Dissemination, Acceleration Program (CARDIAC)."],
-  },
-  {
-    id: "inventaris",
-    name: "Kementerian Pengadaan & Perawatan Inventaris",
-    shortName: "Inventaris",
-    icon: "PackageSearch",
-    fungsi: [
-      "Bertanggung jawab atas pengadaan perawatan seluruh harta benda organisasi dan penyediaan logistik organisasi.",
-    ],
-    proker: [
-      "Pengadaan dan penyedia fasilitas kebutuhan inventaris organisasi.",
-    ],
-  },
-  {
-    id: "medinfo",
-    name: "Kementerian Media & Informasi",
-    shortName: "Medinfo",
-    icon: "Megaphone",
-    fungsi: [
-      "Bertanggung jawab atas penyediaan informasi-informasi penting guna mendukung kemajuan dan pengembangan KMTB dalam bentuk visualisasi terstruktur.",
-    ],
-    proker: ["National Day Awareness."],
-  },
-  {
-    id: "lugri",
-    name: "Kementerian Luar Negeri",
-    shortName: "Lugri",
-    icon: "Globe",
-    fungsi: [
-      "Melaksanakan kerjasama dan kolaborasi serta membangun dan menjaga relasi dengan pihak internal maupun eksternal.",
-    ],
-    proker: ["Media Partner."],
-  },
-  {
-    id: "riset",
-    name: "Kementerian Perencanaan Pengembangan & Riset",
-    shortName: "Riset &bang",
-    icon: "Lightbulb",
-    fungsi: [
-      "Mewadahi kegiatan-kegiatan yang berhubungan dengan riset, inovasi, dan penelitian mahasiswa Teknik Biomedis.",
-    ],
-    proker: ["BIO-EX."],
-  },
-  {
-    id: "kewirausahaan",
-    name: "Kementerian Kewirausahaan & Investasi",
-    shortName: "KWU",
-    icon: "TrendingUp",
-    fungsi: [
-      "Berpartisipasi dalam memenuhi kebutuhan keuangan KMTB melalui pelaksanaan program kerja yang menghasilkan profit.",
-    ],
-    proker: ["Business operator (Merch KMTB, Seragam, dll)."],
-  },
-  {
-    id: "pengmas",
-    name: "Kementerian Pengabdian Masyarakat & Kompetisi",
-    shortName: "Pengmas",
-    icon: "HeartHandshake",
-    fungsi: [
-      "Sebagai fasilitator penyelenggara pelayanan masyarakat guna memenuhi tri dharma perguruan tinggi tingkat organisasi.",
-    ],
-    proker: ["Bengkel Prestasi."],
-  },
-  {
-    id: "pora",
-    name: "Kementerian Pemuda & Olahraga",
-    shortName: "Pora",
-    icon: "Trophy",
-    fungsi: [
-      "Memanajemen massa dalam berbagai aspek kepemudaan, termasuk olahraga, kepemimpinan, dan pengembangan diri.",
-    ],
-    proker: ["Manajemen Massa (Supporter, Arak Arakan, dsb)."],
-  },
-];
+// --- DATA KEGIATAN ---
+const eventsData = events.map((event) => event.title);
 
-// DATA KEGIATAN
-const events = [
-  {
-    title: "Pelantikan Kabinet",
-    date: "14 April 2025",
-    desc: "Penanda dimulainya masa bakti baru dengan semangat kolaborasi.",
-    img: "/public/PELANTIKAN.png",
-  },
-  {
-    title: "First Meet Lentakarya",
-    date: "Mei 2025",
-    desc: "Pertemuan perdana seluruh anggota untuk menyamakan visi & misi.",
-  },
-  {
-    title: "FGD Aklimasi x Lentakarya",
-    date: "Juni 2025",
-    desc: "Forum diskusi transisi antar kabinet untuk keberlanjutan program.",
-  },
-  {
-    title: "PKKMB Prodi 2025",
-    date: "Agustus 2025",
-    desc: "Penyambutan mahasiswa baru Teknik Biomedis dengan semangat solidaritas.",
-  },
-  {
-    title: "PPGD Training",
-    date: "Agustus 2025",
-    desc: "Pelatihan Pertolongan Gawat Darurat untuk kesiapsiagaan mahasiswa.",
-  },
-  {
-    title: "Learn Forum Workshop",
-    date: "14 Juni 2025",
-    desc: "Diskusi kesehatan mental mahasiswa di tengah tekanan akademik.",
-  },
-  {
-    title: "Humani-TB",
-    date: "4 Sept 2025",
-    desc: "Berbagi kasih bersama lansia di Panti Sosial Tresna Werdha.",
-  },
-];
 
 export default function Home() {
   return (
